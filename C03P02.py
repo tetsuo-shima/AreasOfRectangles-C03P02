@@ -40,6 +40,3 @@ def compare_rectangle_area(rectangle_list):
 
 if __name__ == '__main__':
     main()
-
-# def get_area(rectangle):
-#    return rectangle.length * rectangle.width
