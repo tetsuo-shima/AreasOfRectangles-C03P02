@@ -16,7 +16,15 @@ def main():
 
     for index in range(1, NUMBER_OF_RECTANGLES + 1):
         print("Enter dimensions for Rectangle", index)
-        rectangle_list.append(build_rectangle())
+        rectangle = build_rectangle()
+
+        try:
+            validate_rectangle(rectangle)
+        except ValueError as e:
+            print(e)
+            exit(1)
+
+        rectangle_list.append(rectangle)
         print()
 
     compare_rectangle_area(rectangle_list)
@@ -27,6 +35,12 @@ def build_rectangle():
     width = float(input("Enter rectangle width: "))
     area = length * width  # tuples are immutable, so why not?
     return Rectangle(length, width, area)
+
+
+def validate_rectangle(rectangle):
+    if rectangle.length <= 0 or rectangle.width <= 0:
+        raise ValueError('Rectangle dimension(s) must be greater than 0.' +
+                         ' Exiting...')
 
 
 def compare_rectangle_area(rectangle_list):
